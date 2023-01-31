@@ -1,0 +1,3 @@
+# chalet-example-openframeworks
+
+Work in progress...

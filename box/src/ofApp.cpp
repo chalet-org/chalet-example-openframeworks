@@ -1,10 +1,20 @@
+// 3D Box example from the openFrameworks repo
+//   github.com/openframeworks/openFrameworks
+
+
 #include "ofApp.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	std::cout << "OF data path is " << ofFilePath::getAbsolutePath(ofToDataPath("")) << std::endl;
-	ofSetDataPathRoot("bin/data/");
-	std::cout << "OF data path is " << ofFilePath::getAbsolutePath(ofToDataPath("")) << std::endl;
+	// std::cout << "OF data path is " << ofFilePath::getAbsolutePath(ofToDataPath("")) << std::endl;
+
+    // The 'data' path by default differs on mac vs other platforms.
+    // For Chalet, We set it to simply 'data' to assert the location is always relative to the executable
+    // so that when the app is run through Chalet, it can find data, and also when the project is bundled
+    // on MacOS, data can be placed in Resources
+    //
+	ofSetDataPathRoot("data/");
+
 	ofSetVerticalSync(true);
 
 	// this uses depth information for occlusion

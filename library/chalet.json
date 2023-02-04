@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "externalDependencies": {
 	  "openf": {
+      "kind": "git",
 		  "repository": "https://github.com/openframeworks/openFrameworks.git",
 		  "commit": "d6b54dcc9e36a9d65031a67621f4cce864072a1e"
-	  }
+	  },
+    "openf-fetchlibs-osx": {
+      "kind": "script",
+      "condition": "[:macos]",
+      "file": "${external:openf}/scripts/osx/download_libs.sh"
+    }
   },
   "abstracts:*": {
     "language": "C++",
@@ -46,11 +52,6 @@
     }
   },
   "targets": {
-    "download-libs": {
-      "kind": "script",
-      "condition": "[:runTarget]",
-      "file[:macos]": "${external:openf}/scripts/osx/download_libs.sh"
-    },
     "open-frameworks": {
       "kind": "staticLibrary",
       "files": {

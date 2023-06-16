@@ -2,11 +2,11 @@
   "name": "chalet-example-openframeworks",
   "version": "1.0.0",
   "externalDependencies": {
-	  "openf": {
+    "openf": {
       "kind": "git",
-		  "repository": "https://github.com/openframeworks/openFrameworks.git",
-		  "commit": "d6b54dcc9e36a9d65031a67621f4cce864072a1e"
-	  },
+      "repository": "https://github.com/openframeworks/openFrameworks.git",
+      "commit": "d6b54dcc9e36a9d65031a67621f4cce864072a1e"
+    },
     "openf-fetchlibs-osx": {
       "kind": "script",
       "condition": "[:macos]",

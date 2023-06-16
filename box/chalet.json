@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "variables": {
     "ofBuildRoot": "../library",
-    "ofLibs": "${var:ofBuildRoot}/chalet_external/openf/libs"
+    "ofRoot": "${var:ofBuildRoot}/chalet_external/openf",
+    "ofLibs": "${var:ofRoot}/libs"
   },
   "abstracts:*": {
     "language": "C++",
@@ -64,7 +65,7 @@
         "${var:ofLibs}/tess2/lib/osx/tess2.a",
         "${var:ofLibs}/uriparser/lib/osx/uriparser.a"
       ],
-      "macosFrameworks": [
+      "appleFrameworks": [
         "Accelerate",
         "AGL",
         "ApplicationServices",

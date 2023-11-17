@@ -46,7 +46,7 @@
       "libDirs[:macos]": "${var:ofLibs}/fmod/lib/osx",
       "links[:macos]": "fmod",
       "staticLinks": [
-        "open-frameworks"
+        "open-frameworks-s"
       ],
       "staticLinks[:macos]": [
         "${var:ofLibs}/boost/lib/osx/boost_system.a",

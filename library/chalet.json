@@ -52,7 +52,7 @@
     }
   },
   "targets": {
-    "open-frameworks": {
+    "open-frameworks-s": {
       "kind": "staticLibrary",
       "files": {
         "include": [

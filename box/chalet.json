@@ -84,7 +84,7 @@
     }
   },
   "targets": {
-    "ofBoxExample": {
+    "box-example": {
       "kind": "executable",
       "settings:Cxx": {
         "includeDirs": "src"

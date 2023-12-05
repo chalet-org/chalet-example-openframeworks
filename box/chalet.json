@@ -8,7 +8,6 @@
   },
   "abstracts:*": {
     "language": "C++",
-    "language[toolchain:apple-llvm]": "Objective-C++",
     "settings:Cxx": {
       "cppStandard": "c++17",
       "warningsPreset": "minimal",
@@ -17,10 +16,6 @@
       "exceptions": true,
       "defines[:debug]": [
         "DEBUG"
-      ],
-      "compileOptions[toolchain:apple-llvm]": [
-        "-fpascal-strings",
-        "-fobjc-arc"
       ],
       "includeDirs": [
         "${var:ofLibs}/openFrameworks/*",

@@ -1,138 +1,69 @@
 {
-  "name": "chalet-example-openframeworks",
-  "version": "1.0.0",
-  "variables": {
-    "ofBuildRoot": "../library",
-    "ofRoot": "${var:ofBuildRoot}/chalet_external/openf",
-    "ofLibs": "${var:ofRoot}/libs"
-  },
-  "abstracts:*": {
-    "language": "C++",
-    "settings:Cxx": {
-      "cppStandard": "c++17",
-      "warningsPreset": "minimal",
-      "runtimeTypeInformation": true,
-      "threads": true,
-      "exceptions": true,
-      "defines[:debug]": [
-        "DEBUG"
-      ],
-      "includeDirs": [
-        "${var:ofLibs}/openFrameworks/*",
-        "${var:ofLibs}/openFrameworks"
-      ],
-      "includeDirs[:macos]": [
-        "${var:ofLibs}/glew/include",
-        "${var:ofLibs}/tess2/include",
-        "${var:ofLibs}/glm/include",
-        "${var:ofLibs}/utf8/include",
-        "${var:ofLibs}/glfw/include",
-        "${var:ofLibs}/pugixml/include",
-        "${var:ofLibs}/uriparser/include",
-        "${var:ofLibs}/fmod/include",
-        "${var:ofLibs}/cairo/include/cairo",
-        "${var:ofLibs}/FreeImage/include",
-        "${var:ofLibs}/curl/include",
-        "${var:ofLibs}/freetype/include/freetype2",
-        "${var:ofLibs}/json/include",
-        "${var:ofLibs}/rtAudio/include"
-      ],
-      "libDirs": "${var:ofBuildRoot}/${buildDir}",
-      "libDirs[:macos]": "${var:ofLibs}/fmod/lib/osx",
-      "links[:macos]": "fmod",
-      "staticLinks": [
-        "open-frameworks-s"
-      ],
-      "staticLinks[:macos]": [
-        "${var:ofLibs}/boost/lib/osx/boost_system.a",
-        "${var:ofLibs}/boost/lib/osx/boost_filesystem.a",
-        "${var:ofLibs}/cairo/lib/osx/png.a",
-        "${var:ofLibs}/cairo/lib/osx/pixman-1.a",
-        "${var:ofLibs}/cairo/lib/osx/cairo.a",
-        "${var:ofLibs}/cairo/lib/osx/cairo-script-interpreter.a",
-        "${var:ofLibs}/curl/lib/osx/curl.a",
-        "${var:ofLibs}/FreeImage/lib/osx/freeimage.a",
-        "${var:ofLibs}/freetype/lib/osx/freetype.a",
-        "${var:ofLibs}/glew/lib/osx/glew.a",
-        "${var:ofLibs}/glfw/lib/osx/glfw3.a",
-        "${var:ofLibs}/pugixml/lib/osx/pugixml.a",
-        "${var:ofLibs}/rtAudio/lib/osx/rtaudio.a",
-        "${var:ofLibs}/tess2/lib/osx/tess2.a",
-        "${var:ofLibs}/uriparser/lib/osx/uriparser.a"
-      ],
-      "appleFrameworks": [
-        "Accelerate",
-        "AGL",
-        "ApplicationServices",
-        "AVFoundation",
-        "Cocoa",
-        "CoreAudio",
-        "CoreFoundation",
-        "CoreMedia",
-        "CoreServices",
-        "CoreVideo",
-        "IOKit",
-        "OpenGL",
-        "QuartzCore",
-        "Security"
-      ]
-    }
-  },
-  "targets": {
-    "box-example": {
-      "kind": "executable",
-      "settings:Cxx": {
-        "includeDirs": "src"
-      },
-      "files": "src/*.cpp"
-    }
-  },
-  "distribution": {
-    "ofBoxExample": {
-      "kind": "bundle",
-      "buildTargets": "*",
-      "include": [
-        "data"
-      ],
-      "macosBundle": {
-        "type": "app",
-        "icon": "${var:ofLibs}/openFrameworksCompiled/project/osx/of.icns",
-        "infoPropertyList": {
-          "CFBundleDevelopmentRegion": "en-US",
-          "CFBundleDisplayName": "${name}",
-          "CFBundleExecutable": "${mainExecutable}",
-          "CFBundleIconFile": "${icon}",
-          "CFBundleIdentifier": "com.developer.application",
-          "CFBundleInfoDictionaryVersion": "6.0",
-          "CFBundleName": "${bundleName}",
-          "CFBundlePackageType": "APPL",
-          "CFBundleShortVersionString": "${version}",
-          "CFBundleVersion": "${version}",
-          "CFBundleSignature": "????",
-          "LSMinimumSystemVersion": "${osTargetVersion}",
-          "NSHighResolutionCapable": true
-        }
-      }
-    },
-    "ofBoxExample.dmg": {
-      "kind": "macosDiskImage",
-      "pathbarVisible": false,
-      "textSize": 12,
-      "iconSize": 80,
-      "size": {
-        "width": 512,
-        "height": 342
-      },
-      "positions": {
-        "ofBoxExample": {
-          "x": 120,
-          "y": 188
-        },
-        "Applications": {
-          "x": 392,
-          "y": 188
-        }
-      }
-    }
-  }
+	"name": "chalet-example-openframeworks",
+	"version": "1.0.0",
+	"packagePaths": [
+		"../library"
+	],
+	"variables": {
+		"ofLibs": "../library/chalet_external/openf/libs"
+	},
+	"abstracts:*": {
+		"language": "C++",
+		"settings:Cxx": {
+			"cppStandard": "c++17",
+			"warningsPreset": "minimal",
+			"runtimeTypeInformation": true,
+			"threads": true,
+			"exceptions": true,
+			"defines[:debug]": [
+				"DEBUG"
+			]
+		}
+	},
+	"targets": {
+		"box-example": {
+			"kind": "executable",
+			"settings:Cxx": {
+				"includeDirs": "src"
+			},
+			"files": "src/*.cpp",
+			"importPackages": [
+				"open-frameworks.static"
+			]
+		}
+	},
+	"distribution": {
+		"ofBoxExample": {
+			"kind": "bundle",
+			"buildTargets": "*",
+			"include": [
+				"data"
+			],
+			"macosBundle": {
+				"type": "app",
+				"icon": "${var:ofLibs}/openFrameworksCompiled/project/osx/of.icns",
+				"infoPropertyList": "platform/macos/Info.plist.json"
+			}
+		},
+		"ofBoxExample.dmg": {
+			"kind": "macosDiskImage",
+			"pathbarVisible": false,
+			"textSize": 12,
+			"iconSize": 80,
+			"size": {
+				"width": 512,
+				"height": 342
+			},
+			"positions": {
+				"ofBoxExample": {
+					"x": 120,
+					"y": 188
+				},
+				"Applications": {
+					"x": 392,
+					"y": 188
+				}
+			}
+		}
+	}
 }

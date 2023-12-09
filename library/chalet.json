@@ -1,75 +1,139 @@
 {
-  "name": "chalet-example-openframeworks",
-  "version": "1.0.0",
-  "externalDependencies": {
-    "openf": {
-      "kind": "git",
-      "repository": "https://github.com/openframeworks/openFrameworks.git",
-      "commit": "d6b54dcc9e36a9d65031a67621f4cce864072a1e"
-    },
-    "openf-fetchlibs-osx": {
-      "kind": "script",
-      "condition": "[:macos]",
-      "file": "${external:openf}/scripts/osx/download_libs.sh"
-    }
-  },
-  "abstracts:*": {
-    "language": "C++",
-    "language[toolchain:apple-llvm]": "Objective-C++",
-    "settings:Cxx": {
-      "cppStandard": "c++17",
-      "warningsPreset": "minimal",
-      "runtimeTypeInformation": true,
-      "threads": true,
-      "exceptions": true,
-      "defines[:debug]": [
-        "DEBUG"
-      ],
-      "compileOptions[toolchain:apple-llvm]": [
-        "-fpascal-strings",
-        "-fobjc-arc"
-      ],
-      "includeDirs": [
-        "${external:openf}/libs/openFrameworks/*",
-        "${external:openf}/libs/openFrameworks"
-      ],
-      "includeDirs[:macos]": [
-        "${external:openf}/libs/glew/include",
-        "${external:openf}/libs/tess2/include",
-        "${external:openf}/libs/glm/include",
-        "${external:openf}/libs/utf8/include",
-        "${external:openf}/libs/glfw/include",
-        "${external:openf}/libs/pugixml/include",
-        "${external:openf}/libs/uriparser/include",
-        "${external:openf}/libs/fmod/include",
-        "${external:openf}/libs/cairo/include/cairo",
-        "${external:openf}/libs/FreeImage/include",
-        "${external:openf}/libs/curl/include",
-        "${external:openf}/libs/freetype/include/freetype2",
-        "${external:openf}/libs/json/include",
-        "${external:openf}/libs/rtAudio/include"
-      ]
-    }
-  },
-  "targets": {
-    "open-frameworks-s": {
-      "kind": "staticLibrary",
-      "files": {
-        "include": [
-          "${external:openf}/libs/openFrameworks/{3d,communication,events,gl,graphics,math,sound,types,utils,video}/*.cpp",
-          "${external:openf}/libs/openFrameworks/app/ofBaseApp.cpp",
-          "${external:openf}/libs/openFrameworks/app/ofMainLoop.cpp",
-          "${external:openf}/libs/openFrameworks/app/ofAppRunner.cpp",
-          "${external:openf}/libs/openFrameworks/app/ofAppGLFWWindow.cpp"
-        ],
-        "include[toolchain:apple-llvm]": "${external:openf}/libs/openFrameworks/**.{mm,m}",
-        "exclude[:macos]": [
-          "${external:openf}/libs/openFrameworks/video/ofDirectShowPlayer.cpp",
-          "${external:openf}/libs/openFrameworks/video/ofGstVideoGrabber.cpp",
-          "${external:openf}/libs/openFrameworks/video/ofGstVideoPlayer.cpp",
-          "${external:openf}/libs/openFrameworks/video/ofGstUtils.cpp"
-        ]
-      }
-    }
-  }
+	"name": "chalet-example-openframeworks",
+	"version": "1.0.0",
+	"externalDependencies": {
+		"openf": {
+			"kind": "git",
+			"repository": "https://github.com/openframeworks/openFrameworks.git",
+			"commit": "d6b54dcc9e36a9d65031a67621f4cce864072a1e"
+		},
+		"openf-fetchlibs-osx": {
+			"kind": "script",
+			"condition": "[:macos]",
+			"file": "${external:openf}/scripts/osx/download_libs.sh"
+		}
+	},
+	"package": {
+		"open-frameworks.static": {
+			"searchPaths": [
+				"chalet_external/openf/libs/fmod/lib/osx"
+			],
+			"settings:Cxx": {
+				"includeDirs": [
+					"chalet_external/openf/libs/openFrameworks/*",
+					"chalet_external/openf/libs/openFrameworks"
+				],
+				"includeDirs[:macos]": [
+					"chalet_external/openf/libs/glew/include",
+					"chalet_external/openf/libs/tess2/include",
+					"chalet_external/openf/libs/glm/include",
+					"chalet_external/openf/libs/utf8/include",
+					"chalet_external/openf/libs/glfw/include",
+					"chalet_external/openf/libs/pugixml/include",
+					"chalet_external/openf/libs/uriparser/include",
+					"chalet_external/openf/libs/fmod/include",
+					"chalet_external/openf/libs/cairo/include/cairo",
+					"chalet_external/openf/libs/FreeImage/include",
+					"chalet_external/openf/libs/curl/include",
+					"chalet_external/openf/libs/freetype/include/freetype2",
+					"chalet_external/openf/libs/json/include",
+					"chalet_external/openf/libs/rtAudio/include"
+				],
+				"links[:macos]": "chalet_external/openf/libs/fmod/lib/osx/${so:fmod}",
+				"staticLinks": "${buildDir}/${ar:open-frameworks-s}",
+				"staticLinks[:macos]": [
+					"chalet_external/openf/libs/boost/lib/osx/boost_system.a",
+					"chalet_external/openf/libs/boost/lib/osx/boost_filesystem.a",
+					"chalet_external/openf/libs/cairo/lib/osx/png.a",
+					"chalet_external/openf/libs/cairo/lib/osx/pixman-1.a",
+					"chalet_external/openf/libs/cairo/lib/osx/cairo.a",
+					"chalet_external/openf/libs/cairo/lib/osx/cairo-script-interpreter.a",
+					"chalet_external/openf/libs/curl/lib/osx/curl.a",
+					"chalet_external/openf/libs/FreeImage/lib/osx/freeimage.a",
+					"chalet_external/openf/libs/freetype/lib/osx/freetype.a",
+					"chalet_external/openf/libs/glew/lib/osx/glew.a",
+					"chalet_external/openf/libs/glfw/lib/osx/glfw3.a",
+					"chalet_external/openf/libs/pugixml/lib/osx/pugixml.a",
+					"chalet_external/openf/libs/rtAudio/lib/osx/rtaudio.a",
+					"chalet_external/openf/libs/tess2/lib/osx/tess2.a",
+					"chalet_external/openf/libs/uriparser/lib/osx/uriparser.a"
+				],
+				"appleFrameworks": [
+					"Accelerate",
+					"AGL",
+					"ApplicationServices",
+					"AVFoundation",
+					"Cocoa",
+					"CoreAudio",
+					"CoreFoundation",
+					"CoreMedia",
+					"CoreServices",
+					"CoreVideo",
+					"IOKit",
+					"OpenGL",
+					"QuartzCore",
+					"Security"
+				]
+			}
+		}
+	},
+	"abstracts:*": {
+		"language": "C++",
+		"language[toolchain:apple-llvm]": "Objective-C++",
+		"settings:Cxx": {
+			"cppStandard": "c++17",
+			"warningsPreset": "minimal",
+			"runtimeTypeInformation": true,
+			"threads": true,
+			"exceptions": true,
+			"defines[:debug]": [
+				"DEBUG"
+			],
+			"compileOptions[toolchain:apple-llvm]": [
+				"-fpascal-strings",
+				"-fobjc-arc"
+			],
+			"includeDirs": [
+				"${external:openf}/libs/openFrameworks/*",
+				"${external:openf}/libs/openFrameworks"
+			],
+			"includeDirs[:macos]": [
+				"${external:openf}/libs/glew/include",
+				"${external:openf}/libs/tess2/include",
+				"${external:openf}/libs/glm/include",
+				"${external:openf}/libs/utf8/include",
+				"${external:openf}/libs/glfw/include",
+				"${external:openf}/libs/pugixml/include",
+				"${external:openf}/libs/uriparser/include",
+				"${external:openf}/libs/fmod/include",
+				"${external:openf}/libs/cairo/include/cairo",
+				"${external:openf}/libs/FreeImage/include",
+				"${external:openf}/libs/curl/include",
+				"${external:openf}/libs/freetype/include/freetype2",
+				"${external:openf}/libs/json/include",
+				"${external:openf}/libs/rtAudio/include"
+			]
+		}
+	},
+	"targets": {
+		"open-frameworks-s": {
+			"kind": "staticLibrary",
+			"files": {
+				"include": [
+					"${external:openf}/libs/openFrameworks/{3d,communication,events,gl,graphics,math,sound,types,utils,video}/*.cpp",
+					"${external:openf}/libs/openFrameworks/app/ofBaseApp.cpp",
+					"${external:openf}/libs/openFrameworks/app/ofMainLoop.cpp",
+					"${external:openf}/libs/openFrameworks/app/ofAppRunner.cpp",
+					"${external:openf}/libs/openFrameworks/app/ofAppGLFWWindow.cpp"
+				],
+				"include[toolchain:apple-llvm]": "${external:openf}/libs/openFrameworks/**.{mm,m}",
+				"exclude[:macos]": [
+					"${external:openf}/libs/openFrameworks/video/ofDirectShowPlayer.cpp",
+					"${external:openf}/libs/openFrameworks/video/ofGstVideoGrabber.cpp",
+					"${external:openf}/libs/openFrameworks/video/ofGstVideoPlayer.cpp",
+					"${external:openf}/libs/openFrameworks/video/ofGstUtils.cpp"
+				]
+			}
+		}
+	}
 }

@@ -5,6 +5,9 @@
 		"../library"
 	],
 	"abstracts:*": {
+		"importPackages": [
+			"open-frameworks.static"
+		],
 		"language": "C++",
 		"settings:Cxx": {
 			"cppStandard": "c++17",
@@ -23,10 +26,7 @@
 			"settings:Cxx": {
 				"includeDirs": "src"
 			},
-			"files": "src/*.cpp",
-			"importPackages": [
-				"open-frameworks.static"
-			]
+			"files": "src/*.cpp"
 		}
 	},
 	"distribution": {

@@ -16,47 +16,47 @@
 	"package": {
 		"open-frameworks.static": {
 			"searchPaths": [
-				"chalet_external/openf/libs/fmod/lib/osx"
+				"${external:openf}/libs/fmod/lib/osx"
 			],
 			"settings:Cxx": {
 				"includeDirs": [
-					"chalet_external/openf/libs/openFrameworks/*",
-					"chalet_external/openf/libs/openFrameworks"
+					"${external:openf}/libs/openFrameworks/*",
+					"${external:openf}/libs/openFrameworks"
 				],
 				"includeDirs[:macos]": [
-					"chalet_external/openf/libs/glew/include",
-					"chalet_external/openf/libs/tess2/include",
-					"chalet_external/openf/libs/glm/include",
-					"chalet_external/openf/libs/utf8/include",
-					"chalet_external/openf/libs/glfw/include",
-					"chalet_external/openf/libs/pugixml/include",
-					"chalet_external/openf/libs/uriparser/include",
-					"chalet_external/openf/libs/fmod/include",
-					"chalet_external/openf/libs/cairo/include/cairo",
-					"chalet_external/openf/libs/FreeImage/include",
-					"chalet_external/openf/libs/curl/include",
-					"chalet_external/openf/libs/freetype/include/freetype2",
-					"chalet_external/openf/libs/json/include",
-					"chalet_external/openf/libs/rtAudio/include"
+					"${external:openf}/libs/glew/include",
+					"${external:openf}/libs/tess2/include",
+					"${external:openf}/libs/glm/include",
+					"${external:openf}/libs/utf8/include",
+					"${external:openf}/libs/glfw/include",
+					"${external:openf}/libs/pugixml/include",
+					"${external:openf}/libs/uriparser/include",
+					"${external:openf}/libs/fmod/include",
+					"${external:openf}/libs/cairo/include/cairo",
+					"${external:openf}/libs/FreeImage/include",
+					"${external:openf}/libs/curl/include",
+					"${external:openf}/libs/freetype/include/freetype2",
+					"${external:openf}/libs/json/include",
+					"${external:openf}/libs/rtAudio/include"
 				],
-				"links[:macos]": "chalet_external/openf/libs/fmod/lib/osx/${so:fmod}",
+				"links[:macos]": "${external:openf}/libs/fmod/lib/osx/${so:fmod}",
 				"staticLinks": "${buildDir}/${ar:open-frameworks-s}",
 				"staticLinks[:macos]": [
-					"chalet_external/openf/libs/boost/lib/osx/boost_system.a",
-					"chalet_external/openf/libs/boost/lib/osx/boost_filesystem.a",
-					"chalet_external/openf/libs/cairo/lib/osx/png.a",
-					"chalet_external/openf/libs/cairo/lib/osx/pixman-1.a",
-					"chalet_external/openf/libs/cairo/lib/osx/cairo.a",
-					"chalet_external/openf/libs/cairo/lib/osx/cairo-script-interpreter.a",
-					"chalet_external/openf/libs/curl/lib/osx/curl.a",
-					"chalet_external/openf/libs/FreeImage/lib/osx/freeimage.a",
-					"chalet_external/openf/libs/freetype/lib/osx/freetype.a",
-					"chalet_external/openf/libs/glew/lib/osx/glew.a",
-					"chalet_external/openf/libs/glfw/lib/osx/glfw3.a",
-					"chalet_external/openf/libs/pugixml/lib/osx/pugixml.a",
-					"chalet_external/openf/libs/rtAudio/lib/osx/rtaudio.a",
-					"chalet_external/openf/libs/tess2/lib/osx/tess2.a",
-					"chalet_external/openf/libs/uriparser/lib/osx/uriparser.a"
+					"${external:openf}/libs/boost/lib/osx/boost_system.a",
+					"${external:openf}/libs/boost/lib/osx/boost_filesystem.a",
+					"${external:openf}/libs/cairo/lib/osx/png.a",
+					"${external:openf}/libs/cairo/lib/osx/pixman-1.a",
+					"${external:openf}/libs/cairo/lib/osx/cairo.a",
+					"${external:openf}/libs/cairo/lib/osx/cairo-script-interpreter.a",
+					"${external:openf}/libs/curl/lib/osx/curl.a",
+					"${external:openf}/libs/FreeImage/lib/osx/freeimage.a",
+					"${external:openf}/libs/freetype/lib/osx/freetype.a",
+					"${external:openf}/libs/glew/lib/osx/glew.a",
+					"${external:openf}/libs/glfw/lib/osx/glfw3.a",
+					"${external:openf}/libs/pugixml/lib/osx/pugixml.a",
+					"${external:openf}/libs/rtAudio/lib/osx/rtaudio.a",
+					"${external:openf}/libs/tess2/lib/osx/tess2.a",
+					"${external:openf}/libs/uriparser/lib/osx/uriparser.a"
 				],
 				"appleFrameworks": [
 					"Accelerate",

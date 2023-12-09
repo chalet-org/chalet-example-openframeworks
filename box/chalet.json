@@ -4,9 +4,6 @@
 	"packagePaths": [
 		"../library"
 	],
-	"variables": {
-		"ofLibs": "../library/chalet_external/openf/libs"
-	},
 	"abstracts:*": {
 		"language": "C++",
 		"settings:Cxx": {
@@ -41,7 +38,8 @@
 			],
 			"macosBundle": {
 				"type": "app",
-				"icon": "${var:ofLibs}/openFrameworksCompiled/project/osx/of.icns",
+				"icon": "../library/chalet_external/openf/libs/openFrameworksCompiled/project/osx/of.icns",
+				// "icon": "platform/macos/of.png",
 				"infoPropertyList": "platform/macos/Info.plist.json"
 			}
 		},

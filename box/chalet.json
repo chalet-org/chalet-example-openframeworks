@@ -5,9 +5,6 @@
 		"../library"
 	],
 	"abstracts:*": {
-		"importPackages": [
-			"open-frameworks.static"
-		],
 		"language": "C++",
 		"settings:Cxx": {
 			"cppStandard": "c++17",
@@ -18,7 +15,10 @@
 			"defines[:debug]": [
 				"DEBUG"
 			]
-		}
+		},
+		"importPackages": [
+			"open-frameworks.static"
+		]
 	},
 	"targets": {
 		"box-example": {

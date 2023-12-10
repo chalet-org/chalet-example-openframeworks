@@ -14,9 +14,20 @@
 		}
 	},
 	"package": {
-		"open-frameworks.static": {
+		"fmod": {
 			"searchPaths": [
 				"${external:openf}/libs/fmod/lib/osx"
+			],
+			"settings:Cxx": {
+				"includeDirs[:macos]": [
+					"${external:openf}/libs/fmod/include"
+				],
+				"links[:macos]": "${external:openf}/libs/fmod/lib/osx/${so:fmod}"
+			}
+		},
+		"open-frameworks.static": {
+			"importPackages": [
+				"fmod"
 			],
 			"settings:Cxx": {
 				"includeDirs": [
@@ -31,7 +42,6 @@
 					"${external:openf}/libs/glfw/include",
 					"${external:openf}/libs/pugixml/include",
 					"${external:openf}/libs/uriparser/include",
-					"${external:openf}/libs/fmod/include",
 					"${external:openf}/libs/cairo/include/cairo",
 					"${external:openf}/libs/FreeImage/include",
 					"${external:openf}/libs/curl/include",
@@ -39,7 +49,6 @@
 					"${external:openf}/libs/json/include",
 					"${external:openf}/libs/rtAudio/include"
 				],
-				"links[:macos]": "${external:openf}/libs/fmod/lib/osx/${so:fmod}",
 				"staticLinks": "${buildDir}/${ar:open-frameworks-s}",
 				"staticLinks[:macos]": [
 					"${external:openf}/libs/boost/lib/osx/boost_system.a",
@@ -96,22 +105,6 @@
 			"includeDirs": [
 				"${external:openf}/libs/openFrameworks/*",
 				"${external:openf}/libs/openFrameworks"
-			],
-			"includeDirs[:macos]": [
-				"${external:openf}/libs/glew/include",
-				"${external:openf}/libs/tess2/include",
-				"${external:openf}/libs/glm/include",
-				"${external:openf}/libs/utf8/include",
-				"${external:openf}/libs/glfw/include",
-				"${external:openf}/libs/pugixml/include",
-				"${external:openf}/libs/uriparser/include",
-				"${external:openf}/libs/fmod/include",
-				"${external:openf}/libs/cairo/include/cairo",
-				"${external:openf}/libs/FreeImage/include",
-				"${external:openf}/libs/curl/include",
-				"${external:openf}/libs/freetype/include/freetype2",
-				"${external:openf}/libs/json/include",
-				"${external:openf}/libs/rtAudio/include"
 			]
 		}
 	},
@@ -133,7 +126,10 @@
 					"${external:openf}/libs/openFrameworks/video/ofGstVideoPlayer.cpp",
 					"${external:openf}/libs/openFrameworks/video/ofGstUtils.cpp"
 				]
-			}
+			},
+			"importPackages": [
+				"open-frameworks.static"
+			]
 		}
 	}
 }

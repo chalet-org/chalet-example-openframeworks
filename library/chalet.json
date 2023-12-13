@@ -49,7 +49,7 @@
 					"${external:openf}/libs/json/include",
 					"${external:openf}/libs/rtAudio/include"
 				],
-				"staticLinks": "${buildDir}/${ar:open-frameworks-s}",
+				"staticLinks": "dist/${configuration}/${ar:open-frameworks-s}",
 				"staticLinks[:macos]": [
 					"${external:openf}/libs/boost/lib/osx/boost_system.a",
 					"${external:openf}/libs/boost/lib/osx/boost_filesystem.a",
@@ -130,6 +130,12 @@
 			"importPackages": [
 				"open-frameworks.static"
 			]
+		}
+	},
+	"distribution": {
+		"openf": {
+			"kind": "bundle",
+			"buildTargets": "*"
 		}
 	}
 }

@@ -5,7 +5,7 @@
 		"openf": {
 			"kind": "git",
 			"repository": "https://github.com/openframeworks/openFrameworks.git",
-			"commit": "d6b54dcc9e36a9d65031a67621f4cce864072a1e"
+			"commit": "410641eff7c77886d5958526c97b469ecd1d7b61"
 		},
 		"openf-fetchlibs-osx": {
 			"kind": "script",
@@ -14,21 +14,7 @@
 		}
 	},
 	"package": {
-		"fmod": {
-			"searchPaths": [
-				"${external:openf}/libs/fmod/lib/osx"
-			],
-			"settings:Cxx": {
-				"includeDirs[:macos]": [
-					"${external:openf}/libs/fmod/include"
-				],
-				"links[:macos]": "${external:openf}/libs/fmod/lib/osx/${so:fmod}"
-			}
-		},
 		"open-frameworks.static": {
-			"importPackages": [
-				"fmod"
-			],
 			"settings:Cxx": {
 				"includeDirs": [
 					"${external:openf}/libs/openFrameworks/*",
@@ -42,30 +28,32 @@
 					"${external:openf}/libs/glfw/include",
 					"${external:openf}/libs/pugixml/include",
 					"${external:openf}/libs/uriparser/include",
-					"${external:openf}/libs/cairo/include/cairo",
+					"${external:openf}/libs/cairo/include",
 					"${external:openf}/libs/FreeImage/include",
 					"${external:openf}/libs/curl/include",
-					"${external:openf}/libs/freetype/include/freetype2",
+					"${external:openf}/libs/freetype/include",
 					"${external:openf}/libs/json/include",
+					"${external:openf}/libs/openssl/include",
 					"${external:openf}/libs/rtAudio/include"
 				],
 				"staticLinks": "dist/${configuration}/${ar:open-frameworks-s}",
 				"staticLinks[:macos]": [
-					"${external:openf}/libs/boost/lib/osx/boost_system.a",
-					"${external:openf}/libs/boost/lib/osx/boost_filesystem.a",
-					"${external:openf}/libs/cairo/lib/osx/png.a",
-					"${external:openf}/libs/cairo/lib/osx/pixman-1.a",
-					"${external:openf}/libs/cairo/lib/osx/cairo.a",
-					"${external:openf}/libs/cairo/lib/osx/cairo-script-interpreter.a",
-					"${external:openf}/libs/curl/lib/osx/curl.a",
-					"${external:openf}/libs/FreeImage/lib/osx/freeimage.a",
-					"${external:openf}/libs/freetype/lib/osx/freetype.a",
-					"${external:openf}/libs/glew/lib/osx/glew.a",
-					"${external:openf}/libs/glfw/lib/osx/glfw3.a",
-					"${external:openf}/libs/pugixml/lib/osx/pugixml.a",
-					"${external:openf}/libs/rtAudio/lib/osx/rtaudio.a",
-					"${external:openf}/libs/tess2/lib/osx/tess2.a",
-					"${external:openf}/libs/uriparser/lib/osx/uriparser.a"
+					"${external:openf}/libs/brotli/lib/macos/brotli.xcframework/macos-arm64_x86_64/brotli.a",
+					"${external:openf}/libs/cairo/lib/macos/cairo.xcframework/macos-arm64_x86_64/libcairo.a",
+					"${external:openf}/libs/curl/lib/macos/curl.xcframework/macos-arm64_x86_64/curl.a",
+					"${external:openf}/libs/fmt/lib/macos/fmt.xcframework/macos-arm64_x86_64/libfmt.a",
+					"${external:openf}/libs/FreeImage/lib/macos/FreeImage.xcframework/macos-arm64_x86_64/FreeImage.a",
+					"${external:openf}/libs/freetype/lib/macos/freetype.xcframework/macos-arm64_x86_64/libfreetype.a",
+					"${external:openf}/libs/glew/lib/macos/glew.xcframework/macos-arm64_x86_64/libglew.a",
+					"${external:openf}/libs/glfw/lib/macos/glfw.xcframework/macos-arm64_x86_64/libglfw3.a",
+					"${external:openf}/libs/libpng/lib/macos/libpng.xcframework/macos-arm64_x86_64/libpng.a",
+					"${external:openf}/libs/openssl/lib/macos/openssl.xcframework/macos-arm64_x86_64/openssl.a",
+					"${external:openf}/libs/pixman/lib/macos/pixman.xcframework/macos-arm64_x86_64/${ar:pixman-1}",
+					"${external:openf}/libs/pugixml/lib/macos/pugixml.xcframework/macos-arm64_x86_64/${ar:pugixml}",
+					"${external:openf}/libs/rtAudio/lib/macos/rtAudio.xcframework/macos-arm64_x86_64/${ar:rtAudio}",
+					"${external:openf}/libs/tess2/lib/macos/tess2.xcframework/macos-arm64_x86_64/${ar:tess2}",
+					"${external:openf}/libs/uriparser/lib/macos/uriparser.xcframework/macos-arm64_x86_64/uriparser.a",
+					"${external:openf}/libs/zlib/lib/macos/zlib.xcframework/macos-arm64_x86_64/zlib.a"
 				],
 				"appleFrameworks": [
 					"Accelerate",
@@ -81,7 +69,8 @@
 					"IOKit",
 					"OpenGL",
 					"QuartzCore",
-					"Security"
+					"Security",
+					"SystemConfiguration"
 				]
 			}
 		}
@@ -121,10 +110,14 @@
 				],
 				"include[toolchain:apple-llvm]": "${external:openf}/libs/openFrameworks/**.{mm,m}",
 				"exclude[:macos]": [
+					"${external:openf}/libs/openFrameworks/video/ofDirectShowGrabber.cpp",
 					"${external:openf}/libs/openFrameworks/video/ofDirectShowPlayer.cpp",
 					"${external:openf}/libs/openFrameworks/video/ofGstVideoGrabber.cpp",
 					"${external:openf}/libs/openFrameworks/video/ofGstVideoPlayer.cpp",
-					"${external:openf}/libs/openFrameworks/video/ofGstUtils.cpp"
+					"${external:openf}/libs/openFrameworks/video/ofGstUtils.cpp",
+					"${external:openf}/libs/openFrameworks/video/ofMediaFoundationPlayer.cpp",
+					"${external:openf}/libs/openFrameworks/sound/ofFmodSoundPlayer.cpp",
+					"${external:openf}/libs/openFrameworks/sound/ofMediaFoundationSoundPlayer.cpp"
 				]
 			},
 			"importPackages": [

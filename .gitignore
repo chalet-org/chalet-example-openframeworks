@@ -1,7 +1,8 @@
 # Build system
 .chaletrc
-build
-dist
+build/
+dist/
+.cache/
 gmon.out
 chalet_external
 

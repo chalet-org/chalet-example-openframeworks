@@ -1,0 +1,48 @@
+name: chalet-example-openframeworks
+version: "1.0.0"
+packagePaths:
+  - ../library
+abstracts:*:
+  language: C++
+  settings:Cxx:
+    cppStandard: c++17
+    warningsPreset: minimal
+    runtimeTypeInformation: true
+    threads: true
+    exceptions: true
+    defines[:debug]:
+      - DEBUG
+  importPackages:
+    - open-frameworks.static
+targets:
+  box-example:
+    kind: executable
+    settings:Cxx:
+      includeDirs: src
+    files: src/*.cpp
+distribution:
+  ofBoxExample:
+    kind: bundle
+    buildTargets: "*"
+    include:
+      - data
+    macosBundle:
+      type: app
+      icon: ../library/chalet_external/openf/libs/openFrameworksCompiled/project/osx/of.icns
+      infoPropertyList: platform/macos/Info.plist.json
+  ofBoxExample.dmg:
+    kind: macosDiskImage
+    pathbarVisible: false
+    textSize: 12
+    iconSize: 80
+    size:
+      width: 512
+      height: 342
+    positions:
+      ofBoxExample:
+        x: 120
+        y: 188
+      Applications:
+        x: 392
+        y: 188
+

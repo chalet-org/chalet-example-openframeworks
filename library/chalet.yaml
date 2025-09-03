@@ -1,0 +1,110 @@
+name: chalet-example-openframeworks
+version: "1.0.0"
+externalDependencies:
+  openf:
+    kind: git
+    repository: https://github.com/openframeworks/openFrameworks.git
+    commit: 410641eff7c77886d5958526c97b469ecd1d7b61
+  openf-fetchlibs-osx:
+    kind: script
+    condition: "[:macos]"
+    file: ${external:openf}/scripts/osx/download_libs.sh
+package:
+  open-frameworks.static:
+    settings:Cxx:
+      includeDirs:
+        - ${external:openf}/libs/openFrameworks/*
+        - ${external:openf}/libs/openFrameworks
+      includeDirs[:macos]:
+        - ${external:openf}/libs/glew/include
+        - ${external:openf}/libs/tess2/include
+        - ${external:openf}/libs/glm/include
+        - ${external:openf}/libs/utf8/include
+        - ${external:openf}/libs/glfw/include
+        - ${external:openf}/libs/pugixml/include
+        - ${external:openf}/libs/uriparser/include
+        - ${external:openf}/libs/cairo/include
+        - ${external:openf}/libs/FreeImage/include
+        - ${external:openf}/libs/curl/include
+        - ${external:openf}/libs/freetype/include
+        - ${external:openf}/libs/json/include
+        - ${external:openf}/libs/openssl/include
+        - ${external:openf}/libs/rtAudio/include
+      staticLinks: dist/${configuration}/${ar:open-frameworks-s}
+      staticLinks[:macos]:
+        - ${external:openf}/libs/brotli/lib/macos/brotli.xcframework/macos-arm64_x86_64/brotli.a
+        - ${external:openf}/libs/cairo/lib/macos/cairo.xcframework/macos-arm64_x86_64/libcairo.a
+        - ${external:openf}/libs/curl/lib/macos/curl.xcframework/macos-arm64_x86_64/curl.a
+        - ${external:openf}/libs/fmt/lib/macos/fmt.xcframework/macos-arm64_x86_64/libfmt.a
+        - ${external:openf}/libs/FreeImage/lib/macos/FreeImage.xcframework/macos-arm64_x86_64/FreeImage.a
+        - ${external:openf}/libs/freetype/lib/macos/freetype.xcframework/macos-arm64_x86_64/libfreetype.a
+        - ${external:openf}/libs/glew/lib/macos/glew.xcframework/macos-arm64_x86_64/libglew.a
+        - ${external:openf}/libs/glfw/lib/macos/glfw.xcframework/macos-arm64_x86_64/libglfw3.a
+        - ${external:openf}/libs/libpng/lib/macos/libpng.xcframework/macos-arm64_x86_64/libpng.a
+        - ${external:openf}/libs/openssl/lib/macos/openssl.xcframework/macos-arm64_x86_64/openssl.a
+        - ${external:openf}/libs/pixman/lib/macos/pixman.xcframework/macos-arm64_x86_64/libpixman-1.a
+        - ${external:openf}/libs/pugixml/lib/macos/pugixml.xcframework/macos-arm64_x86_64/libpugixml.a
+        - ${external:openf}/libs/rtAudio/lib/macos/rtAudio.xcframework/macos-arm64_x86_64/librtAudio.a
+        - ${external:openf}/libs/tess2/lib/macos/tess2.xcframework/macos-arm64_x86_64/libtess2.a
+        - ${external:openf}/libs/uriparser/lib/macos/uriparser.xcframework/macos-arm64_x86_64/uriparser.a
+        - ${external:openf}/libs/zlib/lib/macos/zlib.xcframework/macos-arm64_x86_64/zlib.a
+      appleFrameworks:
+        - Accelerate
+        - AGL
+        - ApplicationServices
+        - AVFoundation
+        - Cocoa
+        - CoreAudio
+        - CoreFoundation
+        - CoreMedia
+        - CoreServices
+        - CoreVideo
+        - IOKit
+        - OpenGL
+        - QuartzCore
+        - Security
+        - SystemConfiguration
+abstracts:*:
+  language: C++
+  language[toolchain:apple-llvm]: Objective-C++
+  settings:Cxx:
+    cppStandard: c++17
+    warningsPreset: minimal
+    runtimeTypeInformation: true
+    threads: true
+    exceptions: true
+    defines[:debug]:
+      - DEBUG
+    compileOptions[toolchain:apple-llvm]:
+      - -fpascal-strings
+      - -fobjc-arc
+    includeDirs:
+      - ${external:openf}/libs/openFrameworks/*
+      - ${external:openf}/libs/openFrameworks
+targets:
+  open-frameworks-s:
+    kind: staticLibrary
+    files:
+      include:
+        - ${external:openf}/libs/openFrameworks/{3d,communication,events,gl,graphics,math,sound,types,utils,video}/*.cpp
+        - ${external:openf}/libs/openFrameworks/app/ofBaseApp.cpp
+        - ${external:openf}/libs/openFrameworks/app/ofMainLoop.cpp
+        - ${external:openf}/libs/openFrameworks/app/ofAppRunner.cpp
+        - ${external:openf}/libs/openFrameworks/app/ofAppGLFWWindow.cpp
+      include[toolchain:apple-llvm]: ${external:openf}/libs/openFrameworks/**.{mm,m}
+      exclude[:macos]:
+        - ${external:openf}/libs/openFrameworks/video/ofDirectShowGrabber.cpp
+        - ${external:openf}/libs/openFrameworks/video/ofDirectShowPlayer.cpp
+        - ${external:openf}/libs/openFrameworks/video/ofGstVideoGrabber.cpp
+        - ${external:openf}/libs/openFrameworks/video/ofGstVideoPlayer.cpp
+        - ${external:openf}/libs/openFrameworks/video/ofGstUtils.cpp
+        - ${external:openf}/libs/openFrameworks/video/ofMediaFoundationPlayer.cpp
+        - ${external:openf}/libs/openFrameworks/sound/ofFmodSoundPlayer.cpp
+        - ${external:openf}/libs/openFrameworks/sound/ofMediaFoundationSoundPlayer.cpp
+    importPackages:
+      - open-frameworks.static
+distribution:
+  openf:
+    kind: bundle
+    buildTargets: "*"
+
